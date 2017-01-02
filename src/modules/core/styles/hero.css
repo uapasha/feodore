@@ -1,0 +1,21 @@
+.jumbotron {
+  background: url(../media/hero.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  color: white;
+}
+
+.jumbotron h1 {
+  text-align: right;
+  margin-top: 90px;
+  padding: 20px;
+}
+
+.jumbotron p {
+  text-align: right;
+  padding: 20px;
+}
+
+.jumbotron p:first-letter {
+  text-transform: uppercase;
+}
