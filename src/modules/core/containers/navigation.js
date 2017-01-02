@@ -1,10 +1,26 @@
-import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux'
+import { changeLang } from '../../../store'
 import Navigation from '../components/navigation';
 
-import content from '../../../content';
+const mapStateToProps = (state) => {
+  return {
+    language: state.lang,
+  }
+};
 
-const { navigation: navigationContent } = content;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLanguageChange: (lang) => {
+      dispatch(changeLang(lang))
+    }
+  }
+};
 
-export default ({ language }) => (
-  <Navigation navigationContent={navigationContent} language={language} />
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navigation);
+//
+// export default ({ language }) => (
+//   <Navigation language={language} />
+// );

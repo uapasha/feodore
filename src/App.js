@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
 import MainLayout from './modules/core/components/main-layout';
 import './App.css';
 
@@ -12,10 +14,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <MainLayout language={this.state.language} />
+      <Provider store={store}>
+        <div className="App">
+          <MainLayout language={this.state.language} />
 
-      </div>
+        </div>
+      </Provider>
     );
   }
 }

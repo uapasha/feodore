@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import '../styles/navigation.css';
 
+import content from '../../../content';
+const { navigation: navigationContent, languages } = content;
+
 export default class Navigation extends Component {
   constructor(props) {
     super(props);
@@ -12,16 +15,19 @@ export default class Navigation extends Component {
 
   static propTypes = {
     language: PropTypes.string,
-    navigationContent: PropTypes.array,
   };
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });
   };
 
+  handleLangChange = (e, { name: lang }) => {
+    this.props.onLanguageChange(lang);
+  };
+
   render() {
     const { activeItem } = this.state;
-    const { navigationContent, language: lang } = this.props;
+    const { language: lang } = this.props;
 
     return (
       <Menu
@@ -44,9 +50,9 @@ export default class Navigation extends Component {
         ))}
         <Menu.Item as={Dropdown} text="Language">
           <Dropdown.Menu>
-            <Dropdown.Item>Ukrainian</Dropdown.Item>
-            <Dropdown.Item>Russian</Dropdown.Item>
-            <Dropdown.Item>English</Dropdown.Item>
+            {languages.map(({ name, [lang]: content }, i) => (
+              <Dropdown.Item key={i} name={name} onClick={this.handleLangChange} >{content}</Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Menu.Item>
       </Menu>
