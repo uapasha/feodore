@@ -1,11 +1,9 @@
 import { connect } from 'react-redux'
-import { changeLang } from '../../../store'
+import { changeLang } from '../../../data/store'
 import Navigation from '../components/navigation';
 
-const mapStateToProps = (state) => {
-  return {
-    language: state.lang,
-  }
+const mapStateToProps = ({lang}) => {
+  return { lang }
 };
 
 const mapDispatchToProps = (dispatch) => {
