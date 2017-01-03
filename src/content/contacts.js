@@ -1,6 +1,6 @@
 export default {
   social: {
-    facebook: 'https://www.facebook.com/pg/feodore.leather/about/?ref=page_internal'
+    facebook: 'https://www.facebook.com/pg/feodore.leather/about/?ref=page_internal',
   },
   phones: [
     {
@@ -9,5 +9,5 @@ export default {
       ru: '',
       ua: '066-371-27-66',
     },
-  ]
-}
+  ],
+};

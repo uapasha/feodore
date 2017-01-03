@@ -9,7 +9,7 @@ export function changeLang(lang) {
 }
 
 const initialState = {
-  lang: 'en',
+  lang: 'ua',
 };
 
 export function appReducer(state = initialState, action) {

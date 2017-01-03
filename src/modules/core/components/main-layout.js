@@ -3,7 +3,7 @@ import { Grid, Row } from 'react-bootstrap';
 
 import Navigation from '../containers/navigation';
 import Hero from '../containers/hero';
-import '../styles/hero.css'
+import '../styles/hero.css';
 
 class MainLayout extends Component {
   static propTypes = {
@@ -14,14 +14,13 @@ class MainLayout extends Component {
     return (
       <div>
         <Navigation language={this.props.language} />
-        <Hero language={this.props.language}/>
+        <Hero language={this.props.language} />
 
         <Grid fluid >
-          <Row>
-          </Row>
+          <Row />
         </Grid>
       </div>
-    )
+    );
   }
 }
 

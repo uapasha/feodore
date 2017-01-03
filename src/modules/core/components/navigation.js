@@ -1,22 +1,32 @@
-import React, { Component, PropTypes } from 'react'
-import { Menu, Dropdown } from 'semantic-ui-react'
+import React, { Component, PropTypes } from 'react';
+import { Menu, Dropdown } from 'semantic-ui-react';
 import '../styles/navigation.css';
 
-import content from '../../../content';
 import lib from '../../../services/lib';
-const { navigation: navigationContent, languages } = content;
 
 export default class Navigation extends Component {
+
+  static propTypes = {
+    currentLanguage: PropTypes.string,
+    navigationContent: PropTypes.arrayOf(PropTypes.object),
+    languages: PropTypes.arrayOf(PropTypes.object),
+    onLanguageChange: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: 'home'
+      activeItem: 'home',
     };
   }
 
-  static propTypes = {
-    language: PropTypes.string,
-  };
+  getContent = (textData, Element, props) => (
+    textData.map(({ name, [this.props.currentLanguage]: content }, i) => (
+      <Element key={i} name={name} active={this.state.activeItem === name} {...props} >
+        {content}
+      </Element>
+    ))
+  );
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });
@@ -27,8 +37,7 @@ export default class Navigation extends Component {
   };
 
   render() {
-    const { activeItem } = this.state;
-    const { lang } = this.props;
+    const { currentLanguage, navigationContent, languages } = this.props;
 
     return (
       <Menu
@@ -46,17 +55,17 @@ export default class Navigation extends Component {
         }}
         size="large"
       >
-        {navigationContent.map(({ name, [lang]: content }, i) => (
-          <Menu.Item key={i} name={name} active={activeItem === name} onClick={this.handleItemClick} >{content}</Menu.Item>
-        ))}
-        <Menu.Item as={Dropdown} text={lib.getEntityByName(languages, lang)[lang]}  style={{ position: 'absolute', right: '0px' }}>
+        {this.getContent(navigationContent, Menu.Item, { onClick: this.handleItemClick })}
+        <Menu.Item
+          as={Dropdown}
+          text={lib.getEntityByName(languages, currentLanguage)}
+          style={{ position: 'absolute', right: '0px' }}
+        >
           <Dropdown.Menu>
-            {languages.map(({ name, [lang]: content }, i) => (
-              <Dropdown.Item key={i} name={name} onClick={this.handleLangChange} >{content}</Dropdown.Item>
-            ))}
+            {this.getContent(languages, Dropdown.Item, { onClick: this.handleLangChange })}
           </Dropdown.Menu>
         </Menu.Item>
       </Menu>
-    )
+    );
   }
 }

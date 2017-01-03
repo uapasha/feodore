@@ -1,20 +1,20 @@
 export default [
   {
     name: 'en',
-    en: 'English',
-    ru: 'Английски',
-    ua: 'Англійська'
+    en: 'EN',
+    ru: 'EN',
+    ua: 'EN',
   },
   {
     name: 'ru',
-    en: 'Russian',
-    ru: 'Русский',
-    ua: 'Російською'
+    en: 'RU',
+    ru: 'RU',
+    ua: 'RU',
   },
   {
     name: 'ua',
-    en: 'Ukrainian',
-    ru: 'Украинский',
-    ua: 'Українською'
+    en: 'UA',
+    ru: 'UA',
+    ua: 'UA',
   },
 ];
